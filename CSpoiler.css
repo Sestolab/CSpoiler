@@ -1,0 +1,34 @@
+.cspoiler>label {
+	background: #CCC;
+	padding: 5px 15px;
+	width: 100%;
+	display: block;
+	margin-bottom: 0;
+	cursor: pointer;
+}
+
+.cspoiler>.cspoiler-content {
+	background: #FFF;
+	border: 3px solid #CCC;
+	border-top: none;
+}
+
+.cspoiler>input, .cspoiler-content {
+	display: none;
+}
+
+.cspoiler>input:checked+label+.cspoiler-content {
+	display: block;
+}
+
+.cspoiler>input+label:after {
+	content: "+";
+	float: right;
+	font-weight: bold;
+}
+
+.cspoiler>input:checked+label:after {
+	content: "-";
+	float: right;
+	font-weight: bold;
+}
