@@ -7,9 +7,9 @@ defined('is_running') or die('Not an entry point...');
 class Style{
 
     public function __construct(){
-        global $addonRelativeCode, $addonPathCode, $addonPathData, $langmessage, $title, $page;
+        global $addonRelativeCode, $addonPathCode, $addonPathData, $langmessage, $title, $page, $config;
         $page->head_js[] = $addonRelativeCode.'/CSpoiler.js';
-        $lang = $this->getLang();
+        $lang = \gpFiles::Get($addonPathCode.'/languages/'.$config['language'].'.php', 'lang') ?: \gpFiles::Get($addonPathCode.'/languages/en.php', 'lang');
 
         switch(\common::GetCommand()){
 
@@ -48,17 +48,6 @@ class Style{
         echo \common::Link($title, '<span class="gpsubmit">'.$lang['Restore style'].'</span>', 'cmd=styleReset');
         echo '</form>';
         echo '<div class="text-right">Made by <a href="https://sestolab.pp.ua" target="_blank">Sestolab</a></div>';
-    }
-    
-    function getLang(){
-		global $config;
-        
-        if(file_exists(dirname(__FILE__).'/languages/'.$config['language'].'.php'))
-			include dirname(__FILE__).'/languages/'.$config['language'].'.php';
-		else
-            include dirname(__FILE__).'/languages/en.php';
-            
-		return $lang_dict;
     }
     
 }
